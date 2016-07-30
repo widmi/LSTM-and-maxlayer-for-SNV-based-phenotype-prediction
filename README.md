@@ -4,7 +4,19 @@ Source code used in my MSc thesis "LSTM and convolutional neural networks for SN
 
 ### Creation of artificial data ###
 
-### Usage of real data (vcf) and conversion to hdf5 ###
+The artificial datasets can be created with script generate_data.py as VCF files. VCF files can be converted to HDF5 files as described below.
+
+### Input file creation (conversion from VCF to hdf5) ###
+Standard VCF files can be converted to the required hdf5 type with the script vcf_to_hdf5_tools.py.
+
+
+### Target file layout ###
+
+The targets (true classes) of the samples have to be provided in tabulator-separated csv files (see example_target_file.csv for an example). The first column holds the sample names and other columns hold the classes. The first row holds the names of the classes. The relation from samples to classes can range from 0 to 1 and contain -1 for unknown sample labels.
+
+For the nested cross-validation target files containing only the outer training or test sets are required, with the file extensions ‘.test_fold0’ and ‘.train_fold0’ for the test and training set respectively, where ‘0’ is replaced with the number of the fold (i.e 0-4 for a 5-fold outer cross-validation).
+Standard cross-validation splits are done automatically and do not require extra files.
+
 
 ### Reproducing maxlayer experiments ###
 
@@ -14,7 +26,7 @@ The trained networks and logfiles will be stored in the specified location.
 
 For the evaluation of the results, first run the scripts analyze_logfiles.py or analyze_logfiles_nested_CV.py after specifying the respective paths in the script. This will create a summary-file of the results, as used for the preliminary evaluation in my thesis.
 
-In case of the nested cross-validation, the file outer… can be used to calculate the scores on the test sets.
+
 
 ### Reproducing LSTM experiments ###
 
